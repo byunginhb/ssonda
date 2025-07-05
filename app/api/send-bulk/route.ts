@@ -22,10 +22,9 @@ export async function POST(req: NextRequest) {
       );
     }
     return NextResponse.json(data);
-  } catch (e: any) {
-    return NextResponse.json(
-      { error: '서버 오류', code: e?.code || 'UNKNOWN', message: e?.message || String(e) },
-      { status: 500 }
-    );
+  } catch (e) {
+    let message = '서버 오류';
+    if (e instanceof Error) message = e.message;
+    return NextResponse.json({ error: '서버 오류', code: 'UNKNOWN', message }, { status: 500 });
   }
 }

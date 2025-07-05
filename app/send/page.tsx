@@ -41,7 +41,8 @@ export default function SendPage() {
       }
       if (res.ok) setResult('메시지 전송 성공!');
       else setResult((data.error || '전송 실패') + (data.code ? ` (code: ${data.code})` : ''));
-    } catch (e) {
+    } catch (error) {
+      console.error(error);
       setResult('전송 중 오류 발생');
     } finally {
       setLoading(false);
