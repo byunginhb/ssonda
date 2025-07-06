@@ -15,7 +15,7 @@ function parseNumbers(input: string): string[] {
 
 export default function SendForm() {
   const [destInput, setDestInput] = useState('');
-  const [source, setSource] = useState('');
+  const [source, setSource] = useState('123456');
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
@@ -81,7 +81,7 @@ export default function SendForm() {
         <div className="flex justify-center w-full">
           <SendButton
             onClick={handleSend}
-            disabled={loading || !source || !destInput || !text}
+            disabled={loading || !destInput || !text}
             loading={loading}
           />
         </div>
