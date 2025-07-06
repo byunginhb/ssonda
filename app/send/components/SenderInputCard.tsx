@@ -4,6 +4,8 @@ type Props = {
 };
 
 export default function SenderInputCard({ value, onChange }: Props) {
+  console.log(value);
+  console.log(onChange);
   return (
     <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col gap-2">
       <label className="block text-base font-semibold text-gray-900 mb-2">보내는 사람 번호</label>
