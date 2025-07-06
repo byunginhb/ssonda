@@ -40,6 +40,7 @@ export default function SendPage() {
         data = await res.json();
       }
       if (res.ok) setResult('메시지 전송 성공!');
+      else if (data.code === -8) setResult('등록되지 않는 발신 번호 입니다.');
       else setResult((data.error || '전송 실패') + (data.code ? ` (code: ${data.code})` : ''));
     } catch (error) {
       console.error(error);
