@@ -3,7 +3,7 @@
 export default function Footer() {
   return (
     <footer className="w-full bg-white/80 backdrop-blur shadow-inner fixed bottom-0 left-0 z-20 animate-fade-in-footer">
-      <div className="max-w-2xl mx-auto px-4 py-2 text-center text-sm text-gray-800">
+      <div className="max-w-2xl mx-auto px-2 sm:px-4 py-1.5 sm:py-2 text-center text-xs sm:text-sm text-gray-800">
         © {new Date().getFullYear()} 쏜다(sson-da). 모든 권리 보유. | 메시지 전송 서비스
       </div>
       <style jsx global>{`

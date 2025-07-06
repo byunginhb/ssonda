@@ -103,13 +103,13 @@ export default function SendPage() {
             {loading ? '전송 중...' : '전송하기'}
           </button>
         </div>
-        <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center justify-center min-h-[64px]">
-          {result && (
+        {result && (
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center justify-center min-h-[64px]">
             <div className="text-center text-base font-medium animate-fade-in-result text-orange-700">
               {result}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
       <style jsx global>{`
         @keyframes fade-in-pc {

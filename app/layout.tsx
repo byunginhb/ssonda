@@ -15,6 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className="antialiased bg-gray-50 min-h-screen">
         <Header />
         <main className="pt-20 pb-12 min-h-[calc(100vh-80px)] flex flex-col items-center justify-center">
