@@ -43,6 +43,7 @@ export default function SendForm() {
               else
                 return `${number}: 실패 (${data.error || '오류'}${data.code ? ` code:${data.code}` : ''})`;
             } catch (e) {
+              console.error(e);
               return `${number}: 전송 중 오류`;
             }
           })
