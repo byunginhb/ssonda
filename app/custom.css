@@ -1,0 +1,25 @@
+/* 커스텀 애니메이션, 컬러 등 꼭 필요한 부분만 작성 */
+
+@keyframes fade-in-pc {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-in-result {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in-pc {
+  animation: fade-in-pc 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.fade-in-result {
+  animation: fade-in-result 0.7s ease;
+}
