@@ -4,6 +4,8 @@ import SenderInputCard from './SenderInputCard';
 import MessageInputCard from './MessageInputCard';
 import SendButton from './SendButton';
 import ResultCard from './ResultCard';
+import AIMessageOptionsCard from './AIMessageOptionsCard';
+import { makeMessage } from '../../firebase/firebase';
 import '../../custom.css';
 
 function parseNumbers(input: string): string[] {
@@ -19,6 +21,26 @@ export default function SendForm() {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+
+  const handleGenerateMessage = async (
+    style: string,
+    title: string,
+    maxLength: number,
+    description: string
+  ) => {
+    try {
+      const generatedText = await makeMessage({
+        style,
+        title,
+        description,
+        maxLength,
+      });
+      setText(generatedText);
+    } catch (error) {
+      console.error('메시지 생성 오류:', error);
+      throw error;
+    }
+  };
 
   const handleSend = async () => {
     setLoading(true);
@@ -64,20 +86,25 @@ export default function SendForm() {
 
   return (
     <form
-      className="w-full min-h-[70vh] flex flex-col items-center bg-gradient-to-br from-orange-50 to-gray-100 fade-in-pc py-10"
+      className="w-full px-2 min-h-[70vh] flex flex-col items-center bg-gradient-to-br from-orange-50 to-gray-100 fade-in-pc py-10"
       onSubmit={(e) => {
         e.preventDefault();
         handleSend();
       }}
     >
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
-        <RecipientInputCard value={destInput} onChange={setDestInput} />
-        <div className="flex flex-col gap-8">
-          <SenderInputCard value={source} onChange={setSource} />
-          <MessageInputCard value={text} onChange={setText} />
+      <div className="w-full max-w-6xl flex flex-col gap-8">
+        <div className="lg:col-span-1">
+          <AIMessageOptionsCard onGenerate={handleGenerateMessage} />
+        </div>
+        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <RecipientInputCard value={destInput} onChange={setDestInput} />
+          <div className="flex flex-col gap-8">
+            <SenderInputCard value={source} onChange={setSource} />
+            <MessageInputCard value={text} onChange={setText} />
+          </div>
         </div>
       </div>
-      <div className="w-full max-w-4xl flex flex-col items-center gap-6 mt-10">
+      <div className="w-full max-w-6xl flex flex-col items-center gap-6 mt-10">
         <div className="flex justify-center w-full">
           <SendButton
             onClick={handleSend}
